@@ -44,6 +44,10 @@ def fetch_contacts(client: Client, limit: int = 3) -> list[dict]:
     return contacts
 
 
+def is_valid_phone(phone: str) -> bool:
+    return bool(re.fullmatch(r"\d{10,15}", phone))
+
+
 def send_whatsapp_message(phone: str, message: str) -> bool:
     instance_id = os.getenv("ZAPI_INSTANCE_ID")
     token = os.getenv("ZAPI_TOKEN")
@@ -104,7 +108,7 @@ def main():
             fail_count += 1
             continue
 
-        if not re.fullmatch(r"\d{10,15}", phone):
+        if not is_valid_phone(phone):
             logger.warning(f"Telefone em formato inválido para {name}: {phone}")
             fail_count += 1
             continue
