@@ -80,6 +80,14 @@ pip install -r requirements.txt
 python main.py
 ```
 
+## Testes
+
+O projeto tem testes unitários para a validação de telefone e os cenários de envio via Z-API (sucesso, erro HTTP, erro de conexão, credenciais ausentes), usando mocks para não depender de rede real.
+
+```bash
+pytest tests/ -v
+```
+
 ### Saída real (evidência de execução)
 
 ```
