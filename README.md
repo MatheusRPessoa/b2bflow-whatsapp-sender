@@ -28,7 +28,7 @@ INSERT INTO contacts (name, phone) VALUES
   ('Carlos Lima', '5511999990003');
 ```
 
-> O campo `phone` deve estar no formato internacional sem `+` (ex: `5511999990001`).
+> O campo `phone` deve estar no formato internacional sem `+` (ex: `5511999990001`). O script valida que o telefone tenha apenas dígitos (10 a 15 caracteres) antes de enviar; contatos com formato inválido são pulados e registrados como falha no log.
 
 3. Acesse **Project Settings → API** e copie a **Project URL** e a chave de API (pode ser a **anon public key** ou a **secret key**, no novo padrão do Supabase).
 
@@ -69,6 +69,10 @@ ZAPI_TOKEN=your_instance_token
 ## Como Rodar
 
 ```bash
+# Crie e ative um ambiente virtual
+python3 -m venv .venv
+source .venv/bin/activate
+
 # Instale as dependências
 pip install -r requirements.txt
 
@@ -89,7 +93,7 @@ python main.py
 2026-06-19 18:26:15,193 [INFO] === Concluído: 3 enviado(s), 0 falha(s) ===
 ```
 
-> Números mascarados parcialmente para preservar a privacidade dos contatos reais usados no teste.
+> Números mascarados parcialmente para preservar a privacidade dos contatos reais usados no teste. A instância Trial da Z-API usada neste teste expira poucos dias após a criação, por isso este log foi capturado como evidência fixa em vez de algo reproduzível a qualquer momento.
 
 A mensagem enviada para cada contato será:
 
